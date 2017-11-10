@@ -1,0 +1,23 @@
+<h2></h2>
+
+<ul class="alunos">
+  <li *ngFor="let turma of turmas">
+    <span class="badge">{{turma.nome}} </span> - {{turma.pagelivro}}
+  </li>
+</ul>
+
+<mat-nav-list>
+  <mat-list-item *ngFor="let turma of turmas">
+    <span class="badge">{{turma.nome}} </span> - {{turma.pagelivro}}
+  </mat-list-item>
+</mat-nav-list>
+<!--
+<mat-accordion>
+  <div *ngFor="let turma of turmas">
+    <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{turma.nome}} - {{turma.pagelivro}}
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  </div>
+</mat-accordion>-->

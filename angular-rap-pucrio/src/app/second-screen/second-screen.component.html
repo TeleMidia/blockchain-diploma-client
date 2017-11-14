@@ -1,6 +1,5 @@
-<h2></h2>
-
-<ul class="alunos">
+<h2>Turmas e Alunos prontos para emissão do diploma </h2>
+<!-- <ul class="alunos">
   <li *ngFor="let turma of turmas">
     <span class="badge">{{turma.nome}} </span> - {{turma.pagelivro}}
   </li>
@@ -10,14 +9,49 @@
   <mat-list-item *ngFor="let turma of turmas">
     <span class="badge">{{turma.nome}} </span> - {{turma.pagelivro}}
   </mat-list-item>
-</mat-nav-list>
-<!--
-<mat-accordion>
-  <div *ngFor="let turma of turmas">
+</mat-nav-list> -->
+
+<div class="basic-container">
+<mat-accordion >     
+  <mat-expansion-panel *ngFor="let turma of turmas"> 
     <mat-expansion-panel-header>
-    <mat-panel-title>
-      {{turma.nome}} - {{turma.pagelivro}}
-    </mat-panel-title>
-  </mat-expansion-panel-header>
-  </div>
-</mat-accordion>-->
+      <mat-panel-title>{{turma.nome}}</mat-panel-title>
+      <mat-form-field>
+        <input matInput placeholder="Livro/Página">
+    </mat-form-field>
+    </mat-expansion-panel-header>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let aluno of turma.listaAlunos">
+        <span class="badge">{{aluno.nome}} </span> - {{aluno.matricula}}
+      </mat-list-item>
+    </mat-nav-list> 
+  </mat-expansion-panel>
+</mat-accordion> 
+</div>
+<hr>
+<h2>Em processo de emissão do diploma </h2>
+<div>
+  <mat-accordion >     
+    <mat-expansion-panel *ngFor="let turma of turmasinprocess"> 
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{turma.nome}}</mat-panel-title> 
+        <mat-panel-description> Livro/Página: {{turma.pagelivro}}</mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-nav-list>
+        <mat-list-item *ngFor="let aluno of turma.listaAlunos">
+          <span class="badge">{{aluno.nome}} </span> - {{aluno.matricula}}
+        </mat-list-item>
+      </mat-nav-list>
+      
+      <!-- <mat-form-field>
+        <input matInput placeholder="First name">
+      </mat-form-field> -->
+    </mat-expansion-panel>
+  </mat-accordion>  
+</div>
+<hr>
+<h2>Concluídos </h2>
+<div>
+
+
+</div>

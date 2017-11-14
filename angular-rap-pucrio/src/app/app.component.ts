@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Rap PUC-Rio';
+  testeIf = 'first';
+
+  login(event){
+    if(1)
+    this.testeIf = 'notFirst';
+  }
 }

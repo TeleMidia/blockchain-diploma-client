@@ -10,4 +10,7 @@
     <h2></h2>
   </li>
 </ul> -->
-<app-second-screen></app-second-screen>
+<div *ngIf="testeIf=='first' then screen1 else screen2"> </div>
+
+<ng-template #screen1><app-first-screen (submit)="login()"></app-first-screen></ng-template>
+<ng-template #screen2><app-second-screen></app-second-screen></ng-template>

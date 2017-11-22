@@ -15,7 +15,7 @@
   <mat-expansion-panel *ngFor="let turma of turmas"> 
     <mat-expansion-panel-header>
       <mat-panel-title>{{turma.nome}}</mat-panel-title>
-      <button mat-raised-button color="accent" (click)="clicked($event,turma.nome)">Iniciar processo</button>
+      <mat-panel-description> <button mat-raised-button color="accent" (click)="clicked($event,turma.nome)">Iniciar processo</button> </mat-panel-description>
     </mat-expansion-panel-header>
     <mat-nav-list>
       <mat-list-item *ngFor="let aluno of turma.listaAlunos">
@@ -35,7 +35,7 @@
     <mat-expansion-panel *ngFor="let turma of turmasinprocess"> 
       <mat-expansion-panel-header>
         <mat-panel-title>{{turma.nome}}</mat-panel-title> 
-        <mat-panel-description> Livro/Página: {{turma.pagelivro}}</mat-panel-description>
+        <!-- <mat-panel-description> Livro/Página: {{turma.pagelivro}}</mat-panel-description> -->
       </mat-expansion-panel-header>
       <mat-nav-list>
         <mat-list-item *ngFor="let aluno of turma.listaAlunos">

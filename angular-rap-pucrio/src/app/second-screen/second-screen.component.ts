@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Inject } from '@angular/core';
 import { Aluno } from '../aluno';
 import { TURMAS } from '../mock-turmas'
 import { TURMASINPROCESS } from '../mock-turmas-inprocess'
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-second-screen',
@@ -12,7 +13,7 @@ export class SecondScreenComponent implements OnInit {
   turmas = TURMAS;
   turmasinprocess = TURMASINPROCESS;
 
-  constructor() { }//public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) { }//public dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -34,21 +35,47 @@ export class SecondScreenComponent implements OnInit {
   clicked(event,nomeTurma) 
   {
     console.log(nomeTurma);
-    //openDialog();
+    this.openDialog();
     this.addToProcess(nomeTurma);
     this.remove(nomeTurma);
   }
 
+  openDialog() {
+    let dialogRef = this.dialog.open(DialogDataExampleDialog, {
+      width: '300px',
+      data: {
+        teste : 'teste'
+      }
+    });
+  }
+
+  onYesClick() {
+    
+  }
   // openDialog(): void {
   //   let dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
   //     width: '250px',
   //     data: { name: this.name, animal: this.animal }
   //   });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
-    });
-  }
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log('The dialog was closed');
+  //     this.animal = result;
+  //   });
+  // }
 
+}
+
+@Component({
+  selector: 'dialog-data-example-dialog',
+  templateUrl: 'dialog-overview-example-dialog.html',
+})
+export class DialogDataExampleDialog {
+  constructor(
+    public dialogRef: MatDialogRef<DialogDataExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {}
+
+    onNoClick(): void {
+      this.dialogRef.close();
+    }
 }

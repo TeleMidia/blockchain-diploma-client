@@ -28,6 +28,7 @@ export class SecondScreenComponent implements OnInit {
     var clickedTurma,index;
     //index = this.turmas.indexOf(nomeTurma);
     //clickedTurma = this.turmas.splice(index, 1)
+    
     clickedTurma = this.turmas.pop();
     this.turmasinprocess = this.turmasinprocess.concat(clickedTurma);
   }
@@ -36,8 +37,16 @@ export class SecondScreenComponent implements OnInit {
   {
     console.log(nomeTurma);
     this.openDialog();
-    this.addToProcess(nomeTurma);
-    this.remove(nomeTurma);
+    //this.addToProcess(nomeTurma);
+    //this.remove(nomeTurma);
+  }
+
+  openPDF(event,nomeAluno)
+  {
+    /*redirects
+    //window.location.href='https://previews.123rf.com/images/radub85/radub851302/radub85130200229/18128234-Blank-Diploma-Document-With-Golden-Ribbon-Isolated-On-White-Stock-Vector.jpg';*/
+    window.open("https://previews.123rf.com/images/radub85/radub851302/radub85130200229/18128234-Blank-Diploma-Document-With-Golden-Ribbon-Isolated-On-White-Stock-Vector.jpg", "_blank");
+
   }
 
   openDialog() {
@@ -46,6 +55,15 @@ export class SecondScreenComponent implements OnInit {
       data: {
         teste : 'teste'
       }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      
+      console.log(result);
+      if (result == 'teste')
+      {
+        this.addToProcess(result);
+      }
+
     });
   }
 

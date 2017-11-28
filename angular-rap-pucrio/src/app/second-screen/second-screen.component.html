@@ -23,6 +23,8 @@
         <mat-form-field>
           <input matInput placeholder="Livro/Página">
         </mat-form-field>
+        <button mat-raised-button color="primary" (click)="openPDF($event,aluno.nome)">Visualizar PDF</button> 
+        <!-- <a matLine target="_blank" href="https://previews.123rf.com/images/radub85/radub851302/radub85130200229/18128234-Blank-Diploma-Document-With-Golden-Ribbon-Isolated-On-White-Stock-Vector.jpg">Clique para ver PDF</a>  -->
       </mat-list-item>
     </mat-nav-list> 
   </mat-expansion-panel>
@@ -40,6 +42,7 @@
       <mat-nav-list>
         <mat-list-item *ngFor="let aluno of turma.listaAlunos">
           <span class="badge">{{aluno.nome}} </span> - {{aluno.matricula}}
+          <button mat-raised-button color="primary" (click)="openPDF($event,aluno.nome)">Visualizar PDF</button> 
         </mat-list-item>
       </mat-nav-list>
       

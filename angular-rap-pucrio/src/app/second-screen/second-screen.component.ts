@@ -26,17 +26,17 @@ export class SecondScreenComponent implements OnInit {
   addToProcess (nomeTurma)
   {
     var clickedTurma,index;
-    //index = this.turmas.indexOf(nomeTurma);
-    //clickedTurma = this.turmas.splice(index, 1)
+    index = this.turmas.findIndex(i => i.nome === nomeTurma);
+    clickedTurma = this.turmas.splice(index, 1)
     
-    clickedTurma = this.turmas.pop();
+    //clickedTurma = this.turmas.pop();
     this.turmasinprocess = this.turmasinprocess.concat(clickedTurma);
   }
 
   clicked(event,nomeTurma) 
   {
-    console.log(nomeTurma);
-    this.openDialog();
+    //console.log(nomeTurma);
+    this.openDialog(nomeTurma);
     //this.addToProcess(nomeTurma);
     //this.remove(nomeTurma);
   }
@@ -49,7 +49,7 @@ export class SecondScreenComponent implements OnInit {
 
   }
 
-  openDialog() {
+  openDialog(nomeTurma) {
     let dialogRef = this.dialog.open(DialogDataExampleDialog, {
       width: '300px',
       data: {
@@ -61,7 +61,7 @@ export class SecondScreenComponent implements OnInit {
       console.log(result);
       if (result == 'teste')
       {
-        this.addToProcess(result);
+        this.addToProcess(nomeTurma);
       }
 
     });

@@ -8,7 +8,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 
 import { AppComponent } from './app.component';
-import { SecondScreenComponent,DialogDataExampleDialog } from './second-screen/second-screen.component';
+import { SecondScreenComponent,DialogDataExampleDialog, DialogFileView} from './second-screen/second-screen.component';
 import { FirstScreenComponent } from './first-screen/first-screen.component';
 
 
@@ -18,6 +18,7 @@ import { FirstScreenComponent } from './first-screen/first-screen.component';
     SecondScreenComponent,
     FirstScreenComponent,
     DialogDataExampleDialog,
+    DialogFileView
   ],
   imports: [
     BrowserModule,
@@ -29,7 +30,8 @@ import { FirstScreenComponent } from './first-screen/first-screen.component';
     MatDialogModule
   ],
   entryComponents: [
-    DialogDataExampleDialog
+    DialogDataExampleDialog,
+    DialogFileView
   ],
   providers: [],
   bootstrap: [AppComponent]

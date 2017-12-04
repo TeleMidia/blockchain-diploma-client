@@ -13,7 +13,7 @@ export class SecondScreenComponent implements OnInit {
   turmas = TURMAS;
   turmasinprocess = TURMASINPROCESS;
 
-  constructor(public dialog: MatDialog) { }//public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -45,8 +45,16 @@ export class SecondScreenComponent implements OnInit {
   {
     /*redirects
     //window.location.href='https://previews.123rf.com/images/radub85/radub851302/radub85130200229/18128234-Blank-Diploma-Document-With-Golden-Ribbon-Isolated-On-White-Stock-Vector.jpg';*/
-    window.open("https://previews.123rf.com/images/radub85/radub851302/radub85130200229/18128234-Blank-Diploma-Document-With-Golden-Ribbon-Isolated-On-White-Stock-Vector.jpg", "_blank");
+    /*opens in new tab
+    window.open("https://previews.123rf.com/images/radub85/radub851302/radub85130200229/18128234-Blank-Diploma-Document-With-Golden-Ribbon-Isolated-On-White-Stock-Vector.jpg", "_blank");*/
 
+    /*opens in dialog*/
+    let dialogRef = this.dialog.open(DialogFileView, {
+      //width: '300px',
+      data: {
+        nomePDF: nomeAluno
+      }
+    });
   }
 
   openDialog(nomeTurma) {
@@ -67,21 +75,6 @@ export class SecondScreenComponent implements OnInit {
     });
   }
 
-  onYesClick() {
-    
-  }
-  // openDialog(): void {
-  //   let dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-  //     width: '250px',
-  //     data: { name: this.name, animal: this.animal }
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //     this.animal = result;
-  //   });
-  // }
-
 }
 
 @Component({
@@ -96,4 +89,14 @@ export class DialogDataExampleDialog {
     onNoClick(): void {
       this.dialogRef.close();
     }
+}
+
+@Component({
+  selector: 'dialog-fileview',
+  templateUrl: 'dialog-fileview.html',
+})
+export class DialogFileView {
+  constructor(
+    public dialogRef: MatDialogRef<DialogFileView>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {}
 }

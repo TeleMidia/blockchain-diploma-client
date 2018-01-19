@@ -8,17 +8,27 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
-var app = express();
 
-///////////////////
-var api = require('./routes/api.route')
+
+/////////////////////////
 var bluebird = require('bluebird')
 var mongoose = require('mongoose')
 mongoose.Promise = bluebird
 mongoose.connect('mongodb://127.0.0.1:27017/bdapp', { useMongoClient: true})
 .then(()=> { console.log(`Succesfully Connected to the Mongodb Database  at URL : mongodb://127.0.0.1:27017/bdapp`)})
 .catch(()=> { console.log(`Error Connecting to the Mongodb Database at URL : mongodb://127.0.0.1:27017/bdapp`)})
-///////////////////
+/////////////////////////
+
+var app = express();
+
+/////////////////////////
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  next();
+});
+/////////////////////////
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -35,30 +45,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 
+/////////////////////////
+var api = require('./routes/api.route')
+app.use('/api', api);
+/////////////////////////
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
-
-///////////////////
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  next();
-});
-
-//Use the Routes
-app.use('/', index);
-app.use('/users', users);
-
-//Use the API routes for all routes matching /api
-
-app.use('/api', api);
-///////////////////
-
 
 // error handler
 app.use(function(err, req, res, next) {

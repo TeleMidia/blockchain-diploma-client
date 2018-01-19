@@ -7,7 +7,7 @@ var AlunoController = require('../../controllers/alunos.controller');
 
 router.get('/', AlunoController.getAlunos)
 router.post('/', AlunoController.createAluno)
-//router.put('/', AlunoController.updaAluno)
+router.put('/', AlunoController.updateAluno)
 router.delete('/:id', AlunoController.removeAluno)
 
 //Export Router

@@ -38,50 +38,50 @@ exports.createAluno = async function(aluno){
      }
 }
 
-// exports.updateTodo = async function(todo){
-//     var id = todo.id
+exports.updateAluno = async function(aluno){
+    var id = aluno.id
 
-//     try{
-//         //Find the old Todo Object by the Id
+    try{
+        //Find the old aluno Object by the Id
     
-//         var oldTodo = await ToDo.findById(id);
-//     }catch(e){
-//         throw Error("Error occured while Finding the Todo")
-//     }
+        var oldAluno = await Aluno.findById(id);
+    }catch(e){
+        throw Error("Error occured while Finding the aluno")
+    }
 
-//     // If no old Todo Object exists return false
-//     if(!oldTodo){
-//         return false;
-//     }
+    // If no old aluno Object exists return false
+    if(!oldAluno){
+        return false;
+    }
 
-//     console.log(oldTodo)
+    console.log(oldAluno)
 
-//     //Edit the Todo Object
-//     oldTodo.title = todo.title
-//     oldTodo.description = todo.description
-//     oldTodo.status = todo.status
+    //Edit the aluno Object
+    oldAluno.matricula = aluno.matricula
+    oldAluno.nome = aluno.nome
+    oldAluno.turma = aluno.turma
 
 
-//     console.log(oldTodo)
+    console.log(oldAluno)
 
-//     try{
-//         var savedTodo = await oldTodo.save()
-//         return savedTodo;
-//     }catch(e){
-//         throw Error("And Error occured while updating the Todo");
-//     }
-// }
+    try{
+        var savedAluno = await oldAluno.save()
+        return savedAluno;
+    }catch(e){
+        throw Error("And Error occured while updating the Aluno");
+    }
+}
 
 exports.deleteAluno = async function(id){
     
     // Delete the Aluno
     try{
-        var deleted = await Aluno.remove({_id: Id})
+        var deleted = await Aluno.remove({_id: id})
         if(deleted.result.n === 0){
-            throw Error("Todo Could not be deleted")
+            throw Error("Aluno Could not be deleted")
         }
         return deleted
     }catch(e){
-        throw Error("Error Occured while Deleting the Todo")
+        throw Error("Error Occured while Deleting the Aluno")
     }
 }

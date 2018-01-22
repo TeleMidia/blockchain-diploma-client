@@ -1,0 +1,42 @@
+<h2>Turmas e Alunos prontos para emissão do diploma </h2>
+  <div class="basic-container">
+  <mat-accordion >     
+  <mat-expansion-panel > 
+    <mat-expansion-panel-header>
+      <mat-panel-title>Turma1</mat-panel-title>
+      <mat-panel-description> </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let aluno of alunosList">
+        <span class="badge">{{aluno.nome}} </span> - {{aluno.matricula}} 
+        <mat-form-field>
+          <input matInput placeholder="Livro/Página">
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="openPDF($event,aluno.nome)">Visualizar PDF</button> 
+        <!-- <a matLine target="_blank" href="https://previews.123rf.com/images/radub85/radub851302/radub85130200229/18128234-Blank-Diploma-Document-With-Golden-Ribbon-Isolated-On-White-Stock-Vector.jpg">Clique para ver PDF</a>  -->
+      </mat-list-item>
+    </mat-nav-list> 
+  </mat-expansion-panel>
+  </mat-accordion> 
+</div>
+<hr>
+
+<div class=teste>
+    <form>
+        <div class="form-row">
+    
+            <div class="col-md-5">
+            <input type="text" name="matricula" id="matricula" [(ngModel)]="newAluno.matricula" placeholder="Matricula" class="form-control">
+            </div>
+            <div class="col-md-5">
+            <input name="nome" id="nome" [(ngModel)]="newAluno.nome" placeholder="Nome" class="form-control">
+            </div>
+            <div class="col-md-5">
+                <input name="turma" id="turma" [(ngModel)]="newAluno.turma" placeholder="Turma" class="form-control">
+            </div>
+            <div class="col-md-2">
+            <button type="submit" class="btn btn-primary" (click)="create()">Add</button>
+            </div>
+        </div>
+    </form>
+</div>

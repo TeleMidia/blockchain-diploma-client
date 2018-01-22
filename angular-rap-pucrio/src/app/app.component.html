@@ -14,5 +14,6 @@
 <div *ngIf="testeIf=='first' then screen1 else screen2"> </div>
 
 <ng-template #screen1><app-first-screen (submit)="login()"></app-first-screen></ng-template>
-<ng-template #screen2><app-second-screen></app-second-screen></ng-template>
+<!-- <ng-template #screen2><app-second-screen></app-second-screen></ng-template> -->
+<ng-template #screen2><app-bd-screen></app-bd-screen></ng-template>
 </body>

@@ -10,16 +10,17 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 
 import { AppComponent } from './app.component';
-import { SecondScreenComponent,DialogDataExampleDialog, DialogFileView} from './second-screen/second-screen.component';
+//import { SecondScreenComponent,DialogDataExampleDialog, DialogFileView} from './second-screen/second-screen.component';
 import { FirstScreenComponent } from './first-screen/first-screen.component';
-import { BdScreenComponent } from './bd-screen/bd-screen.component';
+import { BdScreenComponent,DialogDataExampleDialog, DialogFileView } from './bd-screen/bd-screen.component';
 import { AlunoService } from './services/aluno.service'
+import { TurmaService } from './services/turma.service'
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SecondScreenComponent,
+    //SecondScreenComponent,
     FirstScreenComponent,
     BdScreenComponent,
     DialogDataExampleDialog,
@@ -41,7 +42,8 @@ import { AlunoService } from './services/aluno.service'
     DialogFileView
   ],
   providers: [
-    AlunoService
+    AlunoService,
+    TurmaService
   ],
   bootstrap: [AppComponent]
 })

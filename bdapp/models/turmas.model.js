@@ -3,9 +3,9 @@ var mongoosePaginate = require('mongoose-paginate')
 
 
 var TurmaSchema = new mongoose.Schema({
-    curso: string,
-    pagelivro: number,
-    status: number
+    curso: String,
+    pagelivro: Number,
+    status: Number
     //listaAlunos: Aluno[]
 })
 

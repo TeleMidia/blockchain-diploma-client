@@ -1,4 +1,4 @@
-import Aluno from './aluno.model';
+//import Aluno from './aluno.model';
 
 export class Turma {
     _id:string;

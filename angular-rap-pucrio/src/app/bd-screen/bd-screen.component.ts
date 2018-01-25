@@ -27,12 +27,95 @@ export class BdScreenComponent implements OnInit {
 
 
   ngOnInit() {
-      this.alunoService.getAlunos()
+    this.reloadpage()
+  }
+
+  create() {
+      this.alunoService.createAluno(this.newAluno)
+        .subscribe((res) => {
+          this.alunosList.push(res.data)
+          this.newAluno = new Aluno()
+        })
+    //this.reloadpage()
+  }
+
+  createT() {
+    this.turmaService.createTurma(this.newTurma)
+      .subscribe((res) => {
+        this.turmasList.push(res.data)
+        this.newTurma = new Turma()
+      })
+    //this.reloadpage() 
+    
+  }
+
+
+  editAluno(aluno: Aluno) {
+    console.log(aluno)
+    if(this.alunosList.includes(aluno)){
+      if(!this.editAlunos.includes(aluno)){
+        this.editAlunos.push(aluno)
+      }else{
+        this.editAlunos.splice(this.editAlunos.indexOf(aluno), 1)
+        this.alunoService.editAluno(aluno).subscribe(res => {
+          console.log('Update Succesful')
+        }, err => {
+          this.editAluno(aluno)
+          console.error('Update Unsuccesful')
+        })
+      }
+    }
+  }
+
+  editTurma(turma: Turma) {
+    console.log(turma)
+    if(this.turmasList.includes(turma)){
+      if(!this.editTurmas.includes(turma)){
+        this.editTurmas.push(turma)
+      }else{
+        this.editTurmas.splice(this.editTurmas.indexOf(turma), 1)
+        this.turmaService.editTurma(turma).subscribe(res => {
+          console.log('Update turma Succesful')
+        }, err => {
+          this.editTurma(turma)
+          console.error('Update turma Unsuccesful')
+        })
+      }
+    }
+    //this.reloadpage()
+  }
+
+  doneAluno(aluno:Aluno){
+      //aluno.status = 'Done'
+      this.alunoService.editAluno(aluno).subscribe(res => {
+        console.log('Update Succesful')
+      }, err => {
+        this.editAluno(aluno)
+        console.error('Update Unsuccesful')
+      })
+  }
+
+  doneTurma(turma:Turma){
+    turma.status = 1//turma.status+1 //starts at 0,1 is in process 2 is concluded
+    this.turmaService.editTurma(turma).subscribe(res => {
+      console.log('Update turma Succesful')
+    }, err => {
+      this.editTurma(turma)
+      console.error('Update turma Unsuccesful')
+    })
+  }
+
+  reloadpage()
+  {
+    this.alunosList = null
+    this.turmasList = this.turmasinprocessList = this.turmascompleteList = null
+
+    this.alunoService.getAlunos()
       .subscribe(alunos => {
           this.alunosList = alunos
           console.log(alunos)
       })
-      this.turmaService.getTurmas()
+    this.turmaService.getTurmas()
       .subscribe(turmas => {
           this.turmasList = turmas.filter(turma => turma.status === 0)
           console.log(turmas)
@@ -48,55 +131,11 @@ export class BdScreenComponent implements OnInit {
           console.log(turmas)
       })
   }
-
-  create() {
-      this.alunoService.createAluno(this.newAluno)
-        .subscribe((res) => {
-          this.alunosList.push(res.data)
-          this.newAluno = new Aluno()
-        })
-  }
-
-  createT() {
-    this.turmaService.createTurma(this.newTurma)
-      .subscribe((res) => {
-        this.turmasList.push(res.data)
-        this.newTurma = new Turma()
-      })
-  }
-
-
-  editAluno(aluno: Aluno) {
-      console.log(aluno)
-      if(this.alunosList.includes(aluno)){
-        if(!this.editAlunos.includes(aluno)){
-          this.editAlunos.push(aluno)
-        }else{
-          this.editAlunos.splice(this.editAlunos.indexOf(aluno), 1)
-          this.alunoService.editAluno(aluno).subscribe(res => {
-            console.log('Update Succesful')
-          }, err => {
-            this.editAluno(aluno)
-            console.error('Update Unsuccesful')
-          })
-        }
-      }
-  }
-
-  doneAluno(aluno:Aluno){
-      //aluno.status = 'Done'
-      this.alunoService.editAluno(aluno).subscribe(res => {
-        console.log('Update Succesful')
-      }, err => {
-        this.editAluno(aluno)
-        console.error('Update Unsuccesful')
-      })
-  }
-  submitAluno(event, aluno:Aluno){
-      if(event.keyCode ==13){
-        this.editAluno(aluno)
-      }
-  }
+  // submitAluno(event, aluno:Aluno){
+  //     if(event.keyCode ==13){
+  //       this.editAluno(aluno)
+  //     }
+  // }
   
   deleteAluno(aluno: Aluno) {
       this.alunoService.deleteAluno(aluno._id).subscribe(res => {
@@ -127,7 +166,7 @@ export class BdScreenComponent implements OnInit {
       console.log(result);
       if (result == 'teste')
       {
-        //this.addToProcess(nomeTurma);
+        this.doneTurma(this.turmasList.find(x=>x.curso==nomeTurma));
       }
 
     });

@@ -8,11 +8,14 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
+import { FileDropDirective, FileSelectDirective } from 'ng2-file-upload';
 
 import { AppComponent } from './app.component';
 //import { SecondScreenComponent,DialogDataExampleDialog, DialogFileView} from './second-screen/second-screen.component';
 import { FirstScreenComponent } from './first-screen/first-screen.component';
 import { BdScreenComponent,DialogDataExampleDialog, DialogFileView } from './bd-screen/bd-screen.component';
+import { FilesComponent } from './bd-screen/files-upload/files.component';
+
 import { AlunoService } from './services/aluno.service'
 import { TurmaService } from './services/turma.service'
 
@@ -24,7 +27,10 @@ import { TurmaService } from './services/turma.service'
     FirstScreenComponent,
     BdScreenComponent,
     DialogDataExampleDialog,
-    DialogFileView
+    DialogFileView,
+    FilesComponent,
+    FileDropDirective, 
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,

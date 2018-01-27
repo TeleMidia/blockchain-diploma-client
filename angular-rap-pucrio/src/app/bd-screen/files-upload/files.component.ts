@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FileUploader } from 'ng2-file-upload';
+import { Component, OnInit,ElementRef,Input  } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
+import "rxjs/add/operator/do";
+import "rxjs/add/operator/map";
 // const URL = '/api/';
 const URLAPI = 'http://localhost:8000/';
 
@@ -24,7 +27,7 @@ const URLAPI = 'http://localhost:8000/';
   //styleUrls: ['files.component.css'],
 })
 export class FilesComponent implements OnInit {
-  public uploader = new FileUploader({url: URLAPI, itemAlias: 'photo'});
+  public uploader:FileUploader = new FileUploader({url: URLAPI, itemAlias: 'photo'});
   
   ngOnInit(){
     //override the onAfterAddingfile property of the uploader so it doesn't authenticate with //credentials.
@@ -33,7 +36,9 @@ export class FilesComponent implements OnInit {
     //able to deal with the server response.
     this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
          console.log("ImageUpload:uploaded:", item, status, response);
-
+         alert(response);
     }
   }
+
+  constructor(private http: Http, private el: ElementRef) {}
 }

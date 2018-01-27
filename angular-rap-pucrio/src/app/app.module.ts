@@ -1,5 +1,6 @@
 import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule} from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -36,6 +37,7 @@ import { TurmaService } from './services/turma.service'
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    HttpModule,
     HttpClientModule,
     MatListModule,
     MatExpansionModule,

@@ -1,19 +1,21 @@
 <body>
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Bem-Vindo ao {{title}}!
-  </h1>
-</div>
-<!--<h2></h2>
-<ul>
-  <li>
-    <h2></h2>
-  </li>
-</ul> -->
-<div *ngIf="testeIf=='first' then screen1 else screen2"> </div>
+  <!--The content below is only a placeholder and can be replaced.-->
+  <div style="text-align:center">
+    <h1>
+      Bem-Vindo ao {{title}}!
+    </h1>
+  
+  <!--<h2></h2>
+  <ul>
+    <li>
+      <h2></h2>
+    </li>
+  </ul> -->
+  <div *ngIf="testeIf=='first' then screen1 else screen2"> </div>
+  
+  <ng-template #screen1><app-first-screen (submit)="login()"></app-first-screen></ng-template>
+  <!-- <ng-template #screen2><app-second-screen></app-second-screen></ng-template> -->
 
-<ng-template #screen1><app-first-screen (submit)="login()"></app-first-screen></ng-template>
-<!-- <ng-template #screen2><app-second-screen></app-second-screen></ng-template> -->
-<ng-template #screen2><app-bd-screen></app-bd-screen></ng-template>
+  <ng-template #screen2><app-bd-screen></app-bd-screen></ng-template>
+  </div>
 </body>

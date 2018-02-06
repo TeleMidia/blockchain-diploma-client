@@ -13,7 +13,7 @@
           <mat-form-field>
             <input matInput placeholder="Livro/Página">
           </mat-form-field>
-          <button mat-raised-button color="primary" (click)="openPDF($event,aluno.nome)">Visualizar PDF</button> 
+          <button mat-raised-button color="primary" (click)="openPDF($event,aluno.nome,aluno.matricula)">Visualizar PDF</button> 
           <!-- <a matLine target="_blank" href="https://previews.123rf.com/images/radub85/radub851302/radub85130200229/18128234-Blank-Diploma-Document-With-Golden-Ribbon-Isolated-On-White-Stock-Vector.jpg">Clique para ver PDF</a>  -->
         </mat-list-item>
       </div>
@@ -38,7 +38,7 @@
               <mat-form-field>
                 <input matInput placeholder="Livro/Página">
               </mat-form-field>
-              <button mat-raised-button color="primary" (click)="openPDF($event,aluno.nome)">Visualizar PDF</button> 
+              <button mat-raised-button color="primary" (click)="openPDF($event,aluno.nome,aluno.matricula)">Visualizar PDF</button> 
               <!-- <a matLine target="_blank" href="https://previews.123rf.com/images/radub85/radub851302/radub85130200229/18128234-Blank-Diploma-Document-With-Golden-Ribbon-Isolated-On-White-Stock-Vector.jpg">Clique para ver PDF</a>  -->
             </mat-list-item>
           </div>
@@ -93,6 +93,6 @@
       </div>
   </form>
 
-  <app-files-upload></app-files-upload>
+  <!-- <app-files-upload></app-files-upload> -->
 
 </div>

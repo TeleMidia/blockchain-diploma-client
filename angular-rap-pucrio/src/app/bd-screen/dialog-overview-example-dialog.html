@@ -4,9 +4,11 @@
 <a href="/assets/download/DiplomasTeste.zip" download="turmapdf">
     Acessar arquivos a serem assinados dessa turma
 </a>
-<h3>Deseja assinar?</h3> 
+<app-files-upload (onUpload)="onNoClick()"></app-files-upload>
+<!-- <h3>Deseja assinar?</h3>  -->
+<h3>Mover a turma para finalizados?</h3>
 <div mat-dialog-actions>
-    <button mat-button [mat-dialog-close]="data.teste" tabindex="2">Sim</button>
+    <button mat-button [mat-dialog-close]="data.teste" tabindex="2">Sim</button> <!-->disabled="{{data.waitingUpload}}"<-->
     <button mat-button (click)="onNoClick()" tabindex="-1">Não</button>
 </div>
 </div>

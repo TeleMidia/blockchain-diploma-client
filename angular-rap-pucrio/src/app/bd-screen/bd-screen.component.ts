@@ -143,22 +143,25 @@ export class BdScreenComponent implements OnInit {
       })
   }
 
-  openPDF(event,nomeAluno)
+  openPDF(event,nomeAluno,matriculaAluno)
   {
     /*opens in dialog*/
     let dialogRef = this.dialog.open(DialogFileView, {
       //width: '300px',
       data: {
-        nomePDF: nomeAluno
+        nomePDF: nomeAluno,
+        numPDF: matriculaAluno
       }
     });
   }
 
   openDialog(event,nomeTurma) {
     let dialogRef = this.dialog.open(DialogDataExampleDialog, {
-      width: '300px',
+      //width: '400px',
       data: {
-        teste : 'teste'
+        teste: 'teste',
+        curso: nomeTurma,
+        waitingUpload: 1
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -182,7 +185,7 @@ constructor(
     public dialogRef: MatDialogRef<DialogDataExampleDialog>,
     @Inject(MAT_DIALOG_DATA) public data: any) {}
 
-    onNoClick(): void {
+    onNoClick(event): void {
     this.dialogRef.close();
     }
 }

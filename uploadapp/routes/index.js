@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var multer = require('multer');
-var DIR = './uploads/';
+var DIR = '../angular-rap-pucrio/src/assets/uploads';
 var upload = multer({dest: DIR}).single('photo');
 /* GET home page. */
 

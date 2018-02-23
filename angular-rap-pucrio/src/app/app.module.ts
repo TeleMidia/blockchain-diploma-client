@@ -10,6 +10,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import { FileDropDirective, FileSelectDirective } from 'ng2-file-upload';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 //import { SecondScreenComponent,DialogDataExampleDialog, DialogFileView} from './second-screen/second-screen.component';
@@ -43,7 +44,8 @@ import { TurmaService } from './services/turma.service'
     MatExpansionModule,
     MatInputModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    NgbModule.forRoot()
   ],
   entryComponents: [
     DialogDataExampleDialog,

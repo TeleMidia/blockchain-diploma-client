@@ -3,14 +3,14 @@
 export class Turma {
     _id:string;
     curso: string;
-    pagelivro: number;
+    filename: string;
     status: number;
     //listaAlunos: Aluno[];
 
     constructor(
     ){
         this.curso = ""
-        this.pagelivro = 0
+        this.filename = ""
         this.status = 0
         //this.listaAlunos = null
     }

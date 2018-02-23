@@ -26,7 +26,7 @@ exports.getTurmas = async function name(req, res, next) {
 exports.createTurma = async function(req, res, next){
     var turma = {
         curso: req.body.curso,
-        pagelivro: req.body.pagelivro,
+        filename: req.body.filename,
         status: req.body.status
     }
 
@@ -56,7 +56,7 @@ exports.updateTurma = async function(req, res, next){
     var turma = {
         id,
         curso: req.body.curso ? req.body.curso : null,
-        pagelivro: req.body.pagelivro ? req.body.pagelivro : null,
+        filename: req.body.filename ? req.body.filename : null,
         status: req.body.status ? req.body.status : null
     }
 

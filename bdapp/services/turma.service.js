@@ -24,7 +24,7 @@ exports.createTurma = async function(turma){
      // Creating a new Mongoose Object by using the new keyword
      var newTurma = new Turma({
          curso: turma.curso,
-         pagelivro: turma.pagelivro,
+         filename: turma.filename,
          status: turma.status
      })
 
@@ -58,7 +58,7 @@ exports.updateTurma = async function(turma){
 
     //Edit the turma Object
     oldTurma.curso = turma.curso
-    oldTurma.pagelivro = turma.pagelivro
+    oldTurma.filename = turma.filename
     oldTurma.status = turma.status
 
 

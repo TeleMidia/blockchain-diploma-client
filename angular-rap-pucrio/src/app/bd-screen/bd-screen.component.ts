@@ -5,6 +5,7 @@ import Aluno from '../models/aluno.model';
 import Turma from '../models/turma.model';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Response } from '@angular/http';
+//import * as fs from 'fs';
 
 @Component({
     selector: 'app-bd-screen',
@@ -95,8 +96,11 @@ export class BdScreenComponent implements OnInit {
       })
   }
 
-  doneTurma(turma:Turma){
+  doneTurma(turma:Turma , filename:string){
+    console.log("saved filename:",turma.filename)
     turma.status = 1//turma.status+1 //starts at 0,1 is in process 2 is concluded
+    turma.filename = filename
+    console.log("new filename:",turma.filename)
     this.turmaService.editTurma(turma).subscribe(res => {
       console.log('Update turma Succesful')
     }, err => {
@@ -118,17 +122,18 @@ export class BdScreenComponent implements OnInit {
     this.turmaService.getTurmas()
       .subscribe(turmas => {
           this.turmasList = turmas.filter(turma => turma.status === 0)
+          console.log(this.turmasList)
           console.log(turmas)
       })
       this.turmaService.getTurmas()
       .subscribe(turmas => {
           this.turmasinprocessList = turmas.filter(turma => turma.status === 1)
-          console.log(turmas)
+          console.log(this.turmasinprocessList)
       })
       this.turmaService.getTurmas()
       .subscribe(turmas => {
           this.turmascompleteList = turmas.filter(turma => turma.status === 2)
-          console.log(turmas)
+          console.log(this.turmascompleteList)
       })
   }
   // submitAluno(event, aluno:Aluno){
@@ -166,10 +171,12 @@ export class BdScreenComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       
-      console.log(result);
-      if (result == 'teste')
+      console.log(result,"RETORNO DO DIALOGO");
+      if (result != null)
       {
-        this.doneTurma(this.turmasList.find(x=>x.curso==nomeTurma));
+        console.log("tem sim");
+        this.doneTurma(this.turmasList.find(x=>x.curso==nomeTurma),result); //change turma status
+        
       }
 
     });
@@ -186,7 +193,21 @@ constructor(
     @Inject(MAT_DIALOG_DATA) public data: any) {}
 
     onNoClick(event): void {
-    this.dialogRef.close();
+      this.dialogRef.close();
+      console.log("NO CLICK");
+    }
+
+    onYesClick(event): void {
+      // if (this.result==null)
+      // {  
+      //   this.dialogRef.close(this.data.teste);
+      // }
+      // else
+      this.dialogRef.close(this.data.teste);
+    }
+
+    filenameChange(event) {
+      this.data.teste = event;
     }
 }
 

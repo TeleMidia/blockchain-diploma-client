@@ -18,7 +18,8 @@ router.post('/', function (req, res, next) {
 	      return res.status(422).send("an Error occured")
 	    }  
 	    path = req.file.path;
-	    return res.send("Upload Completed for "+path); 
+			//return res.send("Upload Completed for "+path); TESTE
+			return res.send(path); 
   });	 
 })
 

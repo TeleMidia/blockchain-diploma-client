@@ -87,7 +87,7 @@ export class BdScreenComponent implements OnInit {
   }
 
   doneAluno(aluno:Aluno){
-      //aluno.status = 'Done'
+      aluno.statusreq = 1
       this.alunoService.editAluno(aluno).subscribe(res => {
         console.log('Update Succesful')
       }, err => {
@@ -106,6 +106,13 @@ export class BdScreenComponent implements OnInit {
     }, err => {
       this.editTurma(turma)
       console.error('Update turma Unsuccesful')
+    })
+    
+    this.alunosList.forEach( function (alunotemp){
+      if (alunotemp.turma == turma.curso)
+      {
+        this.doneAluno(alunotemp)
+      }
     })
   }
 

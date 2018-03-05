@@ -27,7 +27,9 @@ exports.createAluno = async function(req, res, next){
     var aluno = {
         matricula: req.body.matricula,
         nome: req.body.nome,
-        turma: req.body.turma
+        turma: req.body.turma,
+        paglivro: req.body.paglivro,
+        statusreq: req.body.statusreq
     }
 
     try{
@@ -57,7 +59,9 @@ exports.updateAluno = async function(req, res, next){
         id,
         matricula: req.body.matricula ? req.body.matricula : null,
         nome: req.body.nome ? req.body.nome : null,
-        turma: req.body.turma ? req.body.turma : null
+        turma: req.body.turma ? req.body.turma : null,
+        paglivro: req.body.paglivro ? req.body.paglivro : null,
+        statusreq: req.body.statusreq ? req.body.statusreq : null 
     }
 
     try{

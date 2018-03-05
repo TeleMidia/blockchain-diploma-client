@@ -25,7 +25,9 @@ exports.createAluno = async function(aluno){
      var newAluno = new Aluno({
          matricula: aluno.matricula,
          nome: aluno.nome,
-         turma: aluno.turma
+         turma: aluno.turma,
+         paglivro: aluno.paglivro,
+         statusreq: aluno.statusreq
      })
 
      try{
@@ -60,6 +62,8 @@ exports.updateAluno = async function(aluno){
     oldAluno.matricula = aluno.matricula
     oldAluno.nome = aluno.nome
     oldAluno.turma = aluno.turma
+    oldAluno.paglivro = aluno.paglivro
+    oldAluno.statusreq = aluno.statusreq
 
 
     console.log(oldAluno)

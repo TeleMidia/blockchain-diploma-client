@@ -87,7 +87,7 @@ export class BdScreenComponent implements OnInit {
   }
 
   doneAluno(aluno:Aluno){
-      aluno.statusreq = 1
+      aluno.statusreq = 1 //enum?
       this.alunoService.editAluno(aluno).subscribe(res => {
         console.log('Update Succesful')
       }, err => {
@@ -173,7 +173,8 @@ export class BdScreenComponent implements OnInit {
       data: {
         teste: 'teste',
         curso: nomeTurma,
-        waitingUpload: 1
+        waitingUpload: 1,
+        arquivo : '/assets/download/' + nomeTurma + '.zip'
       }
     });
     dialogRef.afterClosed().subscribe(result => {

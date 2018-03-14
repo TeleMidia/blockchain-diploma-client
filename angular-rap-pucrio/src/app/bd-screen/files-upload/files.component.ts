@@ -10,8 +10,7 @@ const URLAPI = 'http://localhost:8000/';
 @Component({
   selector: 'app-files-upload',
   template: `
-  <br>
-  Upload de arquivo:
+  <h3>Upload de arquivo:</h3>
   <div ng2FileDrop  [uploader]="uploader"  style="border: dotted">
     Arraste arquivo aqui ou selecione
     <br>

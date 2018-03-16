@@ -1,5 +1,7 @@
 var JSZip = require("jszip");
 var fs = require("fs");
+var request = require('request');
+const https = require('https');
 var AlunoController = require('../controllers/alunos.controller');
 var filePath = "../angular-rap-pucrio/src/assets/uploads/";
 
@@ -8,6 +10,7 @@ exports.create = function(turma){
 }
 
 exports.manage = function(turma){
+    var request = new XMLHttpRequest();
     console.log('[update] says:MODIFIED', turma.curso, turma.filename);
     if (turma.filename != null)
     {
@@ -42,6 +45,14 @@ exports.manage = function(turma){
                     });
                 });
             });// unzip
+
+            // var alunos = getAlunos();
+            // alunos.forEach(function (alunotemp){
+            //     if (alunotemp.turma == turma.curso)
+            //     {
+                    
+            //     }
+            // })
         });
 
     }

@@ -10,7 +10,7 @@ const URLAPI = 'http://localhost:8000/';
 @Component({
   selector: 'app-files-upload',
   template: `
-  <h3>Upload de arquivo:</h3>
+  <h3>Upload de arquivo de assinados:</h3>
   <div ng2FileDrop  [uploader]="uploader"  style="border: dotted">
     Arraste arquivo aqui ou selecione
     <br>
@@ -20,7 +20,7 @@ const URLAPI = 'http://localhost:8000/';
   <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
     Upload 
   </button>
-  <input type="text" [value]="filename">
+    <input type="text" [value]="filename">
   <br>
   `,
   //templateUrl: 'files.component.html',

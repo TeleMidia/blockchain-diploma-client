@@ -60,6 +60,31 @@
 
 
 </div>
+<mat-accordion >     
+  <mat-expansion-panel *ngFor="let turma of turmascompleteList"> 
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{turma.curso}}</mat-panel-title> 
+      <!-- <mat-panel-description> Livro/Página: {{turma.pagelivro}}</mat-panel-description> -->
+    </mat-expansion-panel-header>
+    <mat-nav-list>
+        <div *ngFor="let aluno of alunosList">
+          <mat-list-item *ngIf="aluno.turma==turma.curso">
+            <span class="badge">{{aluno.nome}} </span> - {{aluno.matricula}} {{aluno.paglivro}}
+            <span style="flex:1 1 auto;">
+            <!-- <mat-form-field>
+              <input matInput placeholder="Livro/Página">
+            </mat-form-field> -->
+            <button mat-raised-button color="primary" (click)="openPDF($event,aluno.nome,aluno.matricula)">Visualizar PDF</button> </span>
+            <!-- <a matLine target="_blank" href="https://previews.123rf.com/images/radub85/radub851302/radub85130200229/18128234-Blank-Diploma-Document-With-Golden-Ribbon-Isolated-On-White-Stock-Vector.jpg">Clique para ver PDF</a>  -->
+          </mat-list-item>
+        </div>
+    </mat-nav-list>
+    
+    <!-- <mat-form-field>
+      <input matInput placeholder="First name">
+    </mat-form-field> -->
+  </mat-expansion-panel>
+</mat-accordion>  
 
 <hr>
 <div class=teste>

@@ -174,7 +174,7 @@ export class BdScreenComponent implements OnInit {
         teste: 'teste',
         curso: nomeTurma,
         waitingUpload: 1,
-        arquivo : '/assets/download/' + nomeTurma + '.zip'
+        arquivo : '/assets/downloads/' + nomeTurma.toLowerCase().replace(".","").replace("-","") + '.zip'
       }
     });
     dialogRef.afterClosed().subscribe(result => {

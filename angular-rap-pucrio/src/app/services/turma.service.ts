@@ -19,7 +19,7 @@ export class TurmaService {
   ) { }
 
   createTurma(turma: Turma): Observable<any>{
-    //returns the observable of http post request 
+    //returns the observable of http post request
     return this.http.post(`${this.turmaUrl}`, turma);
   }
 

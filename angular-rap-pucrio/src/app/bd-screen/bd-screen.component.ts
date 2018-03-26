@@ -129,6 +129,10 @@ export class BdScreenComponent implements OnInit {
     this.turmaService.getTurmas()
       .subscribe(turmas => {
           this.turmasList = turmas.filter(turma => turma.status === 0)
+          this.turmasList.forEach(function (turmatemp){
+            turmatemp.downloadlink = '/assets/downloads/' + turmatemp.curso.toLowerCase().replace(".","").replace("-","") + '.zip'
+          })
+
           console.log(this.turmasList)
           console.log(turmas)
       })
@@ -173,8 +177,7 @@ export class BdScreenComponent implements OnInit {
       data: {
         teste: 'teste',
         curso: nomeTurma,
-        waitingUpload: 1,
-        arquivo : '/assets/downloads/' + nomeTurma.toLowerCase().replace(".","").replace("-","") + '.zip'
+        waitingUpload: 1
       }
     });
     dialogRef.afterClosed().subscribe(result => {

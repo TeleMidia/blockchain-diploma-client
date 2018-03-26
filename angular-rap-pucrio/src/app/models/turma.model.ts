@@ -5,6 +5,7 @@ export class Turma {
     curso: string;
     filename: string;
     status: number;
+    downloadlink: string;
     //listaAlunos: Aluno[];
 
     constructor(
@@ -12,6 +13,7 @@ export class Turma {
         this.curso = ""
         this.filename = ""
         this.status = 0
+        this.downloadlink = ""
         //this.listaAlunos = null
     }
 

@@ -30,7 +30,6 @@ const UserEvents = MongooseTrigger(TurmaSchema, {
         eventName: 'custom_event',
         triggers: 'curso',
         select: 'curso status',
-        //populate: 'something' //if it is a reference... 
       }
     ],
     debug: false
@@ -38,10 +37,6 @@ const UserEvents = MongooseTrigger(TurmaSchema, {
    
   UserEvents.on('create', data => zipmanage.create(data));//console.log('[create] says:', data));
   UserEvents.on('update', data => zipmanage.manage(data));//console.log('[update] says:', data));
-  UserEvents.on('partial:skills', data => console.log('[partial:skills] says:', data));
-  UserEvents.on('partial:x', data => console.log('[partial:x] says:', data));
-  UserEvents.on('remove', data => console.log('[remove] says:', data));
-//TRIGGER
 
 TurmaSchema.plugin(mongoosePaginate)
 const Turma = mongoose.model('Turma', TurmaSchema)

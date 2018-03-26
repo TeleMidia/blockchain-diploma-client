@@ -2,57 +2,76 @@ var JSZip = require("jszip");
 var fs = require("fs");
 var request = require('request');
 const https = require('https');
-var AlunoController = require('../controllers/alunos.controller');
+var AlunoService = require('../services/aluno.service');
+var Aluno = require('../models/alunos.model');
 var filePath = "../angular-rap-pucrio/src/assets/uploads/";
 
-exports.create = function(turma){
+const URL_AUTHENTICATION_SERVER = 'http://150.165.138.252:8050/authenticate';
+const URL_REGISTER_SERVER = 'http://150.165.138.252:8050/register';
+
+exports.create = function (turma) {
     console.log('[create] says:CREATED', turma.curso, turma.filename);
 }
 
-exports.manage = function(turma){
-    var request = new XMLHttpRequest();
-    console.log('[update] says:MODIFIED', turma.curso, turma.filename);
-    if (turma.filename != null)
-    {
-        //var zip = new JSZip();
-        //zip.file("Hello.txt", "Hello World\n");
-        //var testefolder = zip.file("/../angular-rap-pucrio/src/assets/uploads");
-        //var testefolder = zip.file("teste");
-        //testefolder.file("README", "a folder");
-        
-        // fs.readFile("test.zip", function(err, data) {
-        //     if (err) throw err;
-        //     JSZip.loadAsync(data).then(function (zip) {
-        //         console.log('teste.zip achado');
-        //     });
-        // });
+exports.manage = async function (turma) {
 
-        fs.readFile(filePath+turma.filename, function(err, data) {
+    console.log('[update] says:MODIFIED', turma.curso, turma.filename);
+    if (turma.filename != null) {
+        // var dest = filePath + turma.curso + '/' + filename;
+        fs.readFile(filePath + turma.filename, async function (err, data) {
             if (err) throw err;
             var zip = new JSZip();
             zip.loadAsync(data).then(function (contents) {
                 console.log('zip da turma achado', turma.curso, turma.filename);
-                Object.keys(contents.files).forEach(function(filename){
+                Object.keys(contents.files).forEach(function (filename) {
                     console.log('arquivo no zip:', filename);
-                    zip.files[filename].async('nodebuffer').then(function(content) {
-                    //creating folder
-                    if (!fs.existsSync(filePath + turma.curso)){
-                        fs.mkdirSync(filePath + turma.curso);
-                    }
-                    //
-                    var dest = filePath + turma.curso + '/' + filename;
-                    fs.writeFileSync(dest, content);
+                    zip.files[filename].async('nodebuffer').then(function (content) {
+                        //creating folder
+                        if (!fs.existsSync(filePath + turma.curso)) {
+                            fs.mkdirSync(filePath + turma.curso);
+                        }
+                        //
+                        var dest = filePath + turma.curso + '/' + filename;
+                        fs.writeFileSync(dest, content);
                     });
                 });
-            });// unzip
+            });
 
-            // var alunos = getAlunos();
-            // alunos.forEach(function (alunotemp){
-            //     if (alunotemp.turma == turma.curso)
-            //     {
-                    
-            //     }
-            // })
+            // try{
+            var alunos = await AlunoService.getAlunos({}, 1, 100);
+            console.log('pegou alunos');
+            // console.log(alunos);
+            console.log(alunos.docs);
+            // }catch(e){
+
+            // }
+
+            alunos.docs.forEach(function (alunotemp) {
+                if (alunotemp.turma == turma.curso) {
+                    console.log(alunotemp.turma);
+                    var dest = filePath + turma.curso + '/' + alunotemp.matricula +".pdf" ;
+                    console.log("arquivo em" , dest);
+                    requestSettings = {
+                        method : 'POST',
+                        headers: {
+                            'content-type' : 'multipart/form-data'
+                        },
+                        url : URL_REGISTER_SERVER,
+                        timeout: 20000,
+                        formData: {
+                            file: fs.createReadStream(dest),
+                            doc_type:'document',
+                            dlt_id: 'ethereum',
+                            your_number: 'string',
+                            client_id: 'string'
+                        }
+                    }
+                    request(requestSettings, function(error,request,response){
+                        console.log(response,error);
+                    });
+
+                }
+            })
         });
 
     }

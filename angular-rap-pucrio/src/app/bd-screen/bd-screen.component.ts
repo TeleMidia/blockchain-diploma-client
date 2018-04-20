@@ -4,6 +4,7 @@ import { TurmaService } from '../services/turma.service';
 import Aluno from '../models/aluno.model';
 import Turma from '../models/turma.model';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { ChangeDetectorRef } from '@angular/core';
 import { Response } from '@angular/http';
 //import * as fs from 'fs';
 
@@ -14,7 +15,7 @@ import { Response } from '@angular/http';
   })
 export class BdScreenComponent implements OnInit {
   
-  constructor(public dialog: MatDialog, private alunoService: AlunoService, private turmaService: TurmaService) { }
+  constructor(public dialog: MatDialog, private alunoService: AlunoService, private turmaService: TurmaService, private cd: ChangeDetectorRef) { }
   
   public newAluno: Aluno = new Aluno()
   alunosList: Aluno[];
@@ -27,7 +28,7 @@ export class BdScreenComponent implements OnInit {
   editTurmas: Turma[] = [];
 
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.reloadpage()
   }
 
@@ -37,6 +38,7 @@ export class BdScreenComponent implements OnInit {
           this.alunosList.push(res.data)
           this.newAluno = new Aluno()
         })
+    // this.cd.detectChanges();
     //this.reloadpage()
   }
 
@@ -46,6 +48,7 @@ export class BdScreenComponent implements OnInit {
         this.turmasList.push(res.data)
         this.newTurma = new Turma()
       })
+    // this.cd.detectChanges();
     //this.reloadpage() 
     
   }
@@ -125,6 +128,7 @@ export class BdScreenComponent implements OnInit {
       .subscribe(alunos => {
           this.alunosList = alunos
           console.log(alunos)
+          // this.cd.markForCheck(); //not working?
       })
     this.turmaService.getTurmas()
       .subscribe(turmas => {
@@ -132,18 +136,20 @@ export class BdScreenComponent implements OnInit {
           this.turmasList.forEach(function (turmatemp){
             turmatemp.downloadlink = '/assets/downloads/' + turmatemp.curso.toLowerCase().replace(".","").replace("-","") + '.zip'
           })
-
+          // this.cd.markForCheck(); //not working?
           console.log(this.turmasList)
           console.log(turmas)
       })
       this.turmaService.getTurmas()
       .subscribe(turmas => {
           this.turmasinprocessList = turmas.filter(turma => turma.status === 1)
+          // this.cd.markForCheck(); //not working?
           console.log(this.turmasinprocessList)
       })
       this.turmaService.getTurmas()
       .subscribe(turmas => {
           this.turmascompleteList = turmas.filter(turma => turma.status === 2)
+          // this.cd.markForCheck(); //not working?
           console.log(this.turmascompleteList)
       })
   }

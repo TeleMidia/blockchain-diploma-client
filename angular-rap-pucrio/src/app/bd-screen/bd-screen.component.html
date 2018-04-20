@@ -20,7 +20,7 @@
       </div>
     </mat-nav-list>
     <br>
-    <a href="{{turma.downloadlink}}" #button1 mat-raised-button color=primary  download="turma.zip">Acessar arquivos a serem assinados dessa turma</a> 
+    <a href="{{turma.downloadlink}}" #button1 mat-raised-button color=primary  download="turma.zip">Download diplomas para assinar dessa turma</a> 
     <button mat-raised-button color="accent" (click)="openDialog($event,turma.curso)">Iniciar processo</button>
   </mat-expansion-panel>
   </mat-accordion> 
@@ -101,6 +101,9 @@
             <div class="col-md-5">
                 <input name="turma" id="turma" [(ngModel)]="newAluno.turma" placeholder="Turma" class="form-control">
             </div>
+            <div class="col-md-5">
+              <input name="statusreq" id="statusreq" [(ngModel)]="newAluno.statusreq" placeholder="0" class="form-control">
+          </div>
             <div class="col-md-2">
             <button type="submit" class="btn btn-primary" (click)="create()">Add</button>
             </div>

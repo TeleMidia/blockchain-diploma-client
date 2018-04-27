@@ -16,16 +16,16 @@ const CLIENT_ID = 'PUCRIO';
 async function checkInProgressTurms(){
     console.log ("checkInProgressTurms");
     // check if registered are already completed
-    var turmas = await TurmaService.getTurmas({}, 1, 100).docs;
-    var alunos = await AlunoService.getAlunos({}, 1, 100).docs;
+    var turmas = await TurmaService.getTurmas({}, 1, 100);
+    var alunos = await AlunoService.getAlunos({}, 1, 100);
 
-    turmas.forEach(async function(verturma,verindext){
+    turmas.docs.forEach(async function(verturma,verindext){
         if(verturma.status==1){
             var bool_turmadone = 1; //with no aluno left will be kept 1
-            alunos.forEach(async function(veraluno,verindexa){
+            alunos.docs.forEach(async function(veraluno,verindexa){
                 if(veraluno.statusreq == 0){
                     bool_turmadone = 0;
-                    console.log("verificando" , veraluno, verindex);
+                    console.log("verificando" , veraluno, verindexa);
                     requestSettings = {
                         method : 'POST',
                         headers: {
@@ -70,9 +70,11 @@ async function checkInProgressTurms(){
 (function doverification(){
     console.log ("doverification");
     // check if server is ok
-    request.get(URL_SEARCH_SERVER, {timeout: 2000}, function(err) {
-        console.log ("checkServer err.code=", err.code);
-        if (err.code != 'ETIMEDOUT' && err.code != 'ECONNREFUSED' && err.code != 'ESOCKETTIMEDOUT')
+    request.get(URL_SEARCH_SERVER, {timeout: 2000}, function(err,request,response) {
+        console.log ("checkServer error=", err);
+        console.log ("checkServer response=", response);
+        // if (err.code != 'ETIMEDOUT' && err.code != 'ECONNREFUSED' && err.code != 'ESOCKETTIMEDOUT' )
+        if (err == null && response.code != 2007)
             checkInProgressTurms ();
     });
     setTimeout(doverification, 100000);

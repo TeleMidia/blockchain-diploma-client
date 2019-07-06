@@ -6,6 +6,7 @@ Funded by RNP, this project aimed at using blockchain technology to create a pub
 document registration and authentication service. This repository consist on the PUC-Rio
 client prototipe. The sequence diagram bellow illustreate the comunication with
 RAP UFPB  service.
+
 ![sample](docs/sequence.jpg)
 
 ## Screenshots
